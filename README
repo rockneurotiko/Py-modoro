@@ -1,1 +1,40 @@
-I am designing it
+LICENSE:
+
+GNU GPL V3.
+
+__author__: Rock Neurotiko
+__version__: 0.1 Beta
+
+
+-----------------
+INSTALATION
+----------------
+
+
+Put every archives in ~/pomodoro/ or anywhere you want (but modify the direction in pomodo.py).
+
+
+
+-----------------
+EXECUTION
+----------------
+Open a terminal, and then:
+
+$ cd pomodoro
+$ python pomodoro.py
+
+
+You are in the program.
+Enter "h" to open the help and know the full-list commands.
+
+
+
+You can make a "shortcut" openning a terminal, and writting:
+
+alias pomodoro = "python ~/pomodoro/pomodoro.py"
+
+When you write pomodoro in a terminal, it will execute the program.
+
+Check out that this is temporal, if you want to have it for ever, google it!
+
+--------- 
