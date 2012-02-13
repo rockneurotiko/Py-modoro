@@ -56,7 +56,7 @@ class pomodoro:
 	def terminar(self):
 		self.estado = "END"
 		self.on = False
-		play_sound.play("/home/rock/Programacion/pomodoro/alarma.mp3")
+		play_sound.play("~/pomodoro/alarma.mp3")
 		print "Fin del pomodoro, puedes descansar.\n"
 		self.promt_inicial()
 
