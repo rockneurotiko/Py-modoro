@@ -6,26 +6,43 @@ from KThread import *
 
 
 
+#################################################
+#												#
+# class Temporizador(threading.Thread):			#
+#												#
+# 	def __init__ (self, time2):					#
+#  		self.time = time2						#
+#  		threading.Thread.__init__(self)			#
+#  		global contador							#
+#  		self.contador = 0						#
+#												#
+#  	def run (self):								#
+#  		while self.contador < self.time:		#
+#  			sleep(1)							#
+#  			self.contador += 1					#
+#												#
+#  	def segundos(self):							#
+#  		return self.time - self.contador		#
+#												#
+#################################################
+#												#
+#												#
+#global f 										# 	
+#f = Temporizador(time)							#
+#f.start()    #Parte de otro metod0				#
+#												#
+#												#
+#################################################
 
 
-# class Temporizador(threading.Thread):
-
-# 	def __init__ (self, time2):
-#  		self.time = time2
-#  		threading.Thread.__init__(self)
-#  		global contador
-#  		self.contador = 0
-
-#  	def run (self):
-#  		while self.contador < self.time:
-#  			sleep(1)
-#  			self.contador += 1
- 	
-#  	def segundos(self):
-#  		return self.time - self.contador
-
-
-
+__author__ = "Rock Neurotiko"
+__copyright__= "Copyright 2012, Rock Neurotiko"
+__credits__ = ["Rock Neurotiko", "Who mades the module KThread", 
+				"Who mades the module play_sound"]
+__license__ = "GNU/GPL v3"
+__version__ = "0.1.2"
+__maintainer__ = "Rock Neurotiko"
+__email__ = "miguelglafuente@gmail.com"
 
 class pomodoro:
 
@@ -56,7 +73,7 @@ class pomodoro:
 	def terminar(self):
 		self.estado = "END"
 		self.on = False
-		play_sound.play("~/pomodoro/alarma.mp3")
+		play_sound.play("/home/rock/Programacion/pomodoro/alarma.mp3")
 		print "Fin del pomodoro, puedes descansar.\n"
 		self.promt_inicial()
 
@@ -79,17 +96,20 @@ class pomodoro:
 		self.tiempo = time
 		
 
-	def iniciar_pom(self, time = 0):
-		if time == 0:
-			time = self.tiempo
+	def tiempo_pom(self, mins = 0):
+		if mins == 0:
+			self.tiempo = 25*60
+		else:
+			self.tiempo = mins*60
+
+
+	def iniciar_pom(self):
+		
+		time = self.tiempo
 
 		self.estado = "START"
 
 		self.arrancar(time)
-
-		#global f
-		#f = Temporizador(time)
-		#f.start()    #Parte de otro metodo
 
 		global e
 		e = KThread(target = self.contador)
@@ -98,11 +118,6 @@ class pomodoro:
 		self.interr = 0
 
 	
-	def tiempo_pom(self, mins = 0):
-		if mins == 0:
-			self.tiempo = 25*60
-		else:
-			self.tiempo = mins*60
 
 	def interrupt_pom(self):
 		if self.estado=="STOP":
@@ -113,6 +128,7 @@ class pomodoro:
 			t.cancel()
 			e.kill()
 			print "Pomodoro parado quedando: " + str(self.segundos())
+			self.estado = "STOP"
 
 	
 	def saber_tiempo(self):
@@ -130,9 +146,10 @@ class pomodoro:
 
  	
  	def quit(self):
- 		self.interrupt_pom()
-		
-
+ 		if self.estado == "START":
+ 			self.interrupt_pom()
+ 		print "Espero que haya aprovechado el tiempo."
+ 		raw_input()
 	
 
  	#INTERFAZ
@@ -149,32 +166,34 @@ class pomodoro:
 
  		hacer = raw_input("Introduzca (h para ayuda): ")
 
- 		if hacer == "h":
+ 		if (hacer == "--help" or hacer == "h"):
  			print """ 
  			Usted puede introducir:
- 			iniciar -> Pasa a un promt donde introduces el tiempo para el pomodoro.
- 			parar -> para el pomodoro iniciado
- 			interrupciones -> muestra las interrupciones hechas al pomodoro.
- 			h -> muestra esta ayuda
- 			q -> salir
- 			tiempo -> muestra el tiempo que llevas.
+ 			i -> Pasa a un promt donde introduces el tiempo para el pomodoro (comando largo --iniciar)
+ 			p -> para el pomodoro iniciado (comando largo --parar)
+ 			--interrupciones -> muestra las interrupciones hechas al pomodoro.
+ 			h -> muestra esta ayuda (comando largo --help)
+ 			q -> salir (comando largo --quit)
+ 			t -> muestra el tiempo que queda de pomodoro (comando largo --tiempo)
+ 			c -> muestra una cuenta atras del tiempo que queda(irreversible) [comando largo --cuenta]
 
 
  			"""
  			self.promt_inicial()
 		
- 		elif hacer == "parar":
+ 		elif (hacer == "--parar" or hacer == "p"):
  			self.interrupt_pom()
  			self.promt_inicial()
 
- 		elif hacer == "iniciar":
+ 		elif (hacer == "--iniciar" or hacer == "i"):
  			self.promt_iniciar()
 
- 		elif hacer == "q":
+ 		elif (hacer == "--quit" or hacer == "q"):
  			self.quit()
- 			e.kill()
+ 			if self.estado == "START":
+ 				e.kill()
 
- 		elif hacer == "tiempo":
+ 		elif (hacer == "--tiempo" or hacer == "t"):
  			if self.estado == "START":
  				self.saber_tiempo()
  				self.promt_inicial()
@@ -182,7 +201,7 @@ class pomodoro:
  				print "No has iniciado ningun pomodoro. \n"
  				self.promt_inicial()
  		
- 		elif hacer == "cuenta":
+ 		elif (hacer == "--cuenta" or hacer == "c"):
  			self.cuenta_atras()
 
  		else:
