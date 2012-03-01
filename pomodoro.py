@@ -30,7 +30,10 @@ from KThread import *
 #global f 										# 	
 #f = Temporizador(time)							#
 #f.start()    #Parte de otro metod0				#
-#												#
+# 												#
+# Esta metodo ha sido eliminado para dar paso 	#
+# al proporcionado por KThread, que permite 	#
+#	matar el thread. 							#
 #												#
 #################################################
 
@@ -127,12 +130,32 @@ class pomodoro:
 			self.interr += 1
 			t.cancel()
 			e.kill()
-			print "Pomodoro parado quedando: " + str(self.segundos())
+			print "Pomodoro parado quedando: " + self.a_minutos()
 			self.estado = "STOP"
 
-	
+
+	def a_minutos(self):
+		tiempo_local = self.segundos()
+
+		if tiempo_local <= 60:
+			return self.segundos() + " " + "segundos."
+
+		elif tiempo_local <= 3600:
+			segundos_local = tiempo_local - (tiempo_local/60)*60
+			return str(tiempo_local/60)  + " " + "minutos, y " + str(segundos_local) + " " + "segundos."
+
+		else:
+
+			minutos_local = (tiempo_local - (tiempo_local - ((tiempo_local/3600)*3600)/60))/60
+			segundos_local = tiempo_local - minutos_local - minutos_local*3600
+
+
+			return (str(tiempo_local/3600) + " " + "hora/s, y " + str(minutos_local) + " " + 
+			"minuto/s, y " + str(segundos_local) + " " + "segundo/s.")
+
 	def saber_tiempo(self):
-		print(self.segundos())
+		print "Quedan: " + self.a_minutos()
+
 
 
 	
@@ -155,7 +178,7 @@ class pomodoro:
  	#INTERFAZ
 
  	def promt_iniciar(self):
- 		time = input("Introduzca tiempo.(si introduces 0 es por defecto [25])  >: ")
+ 		time = input("Introduzca tiempo en minutos.(si introduces 0 es por defecto [25])  >: ")
  		self.tiempo_pom(time)
  		self.iniciar_pom()
  		self.promt_inicial()
@@ -164,34 +187,40 @@ class pomodoro:
  	def promt_inicial(self):
 
 
- 		hacer = raw_input("Introduzca (h para ayuda): ")
+ 		hacer = raw_input("Comando (h para ayuda): ")
 
  		if (hacer == "--help" or hacer == "h"):
  			print """ 
  			Usted puede introducir:
- 			i -> Pasa a un promt donde introduces el tiempo para el pomodoro (comando largo --iniciar)
- 			p -> para el pomodoro iniciado (comando largo --parar)
- 			--interrupciones -> muestra las interrupciones hechas al pomodoro.
+ 			c -> muestra una cuenta atras del tiempo que queda(irreversible) [comando largo --cuenta]
  			h -> muestra esta ayuda (comando largo --help)
+ 			i -> Pasa a un promt donde introduces el tiempo para el pomodoro (comando largo --iniciar)
+ 			--interrupciones -> muestra las interrupciones hechas al pomodoro.
+ 			p -> para el pomodoro iniciado (comando largo --parar)
  			q -> salir (comando largo --quit)
  			t -> muestra el tiempo que queda de pomodoro (comando largo --tiempo)
- 			c -> muestra una cuenta atras del tiempo que queda(irreversible) [comando largo --cuenta]
+ 			
 
 
  			"""
  			self.promt_inicial()
+
+ 		elif (hacer == "--cuenta" or hacer == "c"):
+ 			self.cuenta_atras()
+
+ 		elif (hacer == "--iniciar" or hacer == "i"):
+ 			self.promt_iniciar()
+
 		
  		elif (hacer == "--parar" or hacer == "p"):
  			self.interrupt_pom()
  			self.promt_inicial()
 
- 		elif (hacer == "--iniciar" or hacer == "i"):
- 			self.promt_iniciar()
 
  		elif (hacer == "--quit" or hacer == "q"):
- 			self.quit()
  			if self.estado == "START":
- 				e.kill()
+ 				e.kill() 			
+ 			self.quit()
 
  		elif (hacer == "--tiempo" or hacer == "t"):
  			if self.estado == "START":
@@ -201,8 +230,7 @@ class pomodoro:
  				print "No has iniciado ningun pomodoro. \n"
  				self.promt_inicial()
  		
- 		elif (hacer == "--cuenta" or hacer == "c"):
- 			self.cuenta_atras()
+
 
  		else:
  			print """
