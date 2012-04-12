@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 from Tkinter import *
-import tkMessageBox
+import tkMessageBox, tkFileDialog
 from KThread import *
 from time import sleep
 import os
@@ -193,8 +193,29 @@ I'm gonna resume it, if you want a large explain search on the Internet"""
 
 
 
+class SearchFile:
+
+        def __init__(self):
+                
+
+                # define options for opening or saving a file
+                self.file_opt = options = {}
+                options['defaultextension'] = '' # couldn't figure out how this works
+                options['filetypes'] = [('Music mp3', '.mp3')] # ('all files', '.*'), 
+                options['initialdir'] = 'C:\\'
+                options['initialfile'] = 'myfile.txt'
+                options['parent'] = root
+                options['title'] = 'This is a title'
 
 
+                self.dir_opt = options = {}
+                options['initialdir'] = 'C:\\'
+                options['mustexist'] = False
+                options['parent'] = root
+                options['title'] = 'This is a title'
+
+        def askOpenFile(self):
+                return tkFileDialog.askopenfile(mode='r', **self.file_opt)
 
 
 
@@ -221,7 +242,7 @@ def callback():
 
 
 #This function creates the configuration window (File>Configuration)
-def configuration():
+def configuration(*evento):
         configwindow = Toplevel(root)
         Config(configwindow)
 
@@ -236,6 +257,11 @@ def whatsPomodoro():
         helpwindow = Toplevel(root) #Define the new window
         Help(helpwindow) #Call to the class Help and pass the new window created.
 
+def openFile():
+        
+        searchClass = SearchFile()
+        filemp3 = searchClass.askOpenFile()
+
 
 
 #Defines the menu
@@ -243,7 +269,8 @@ def menu(root):
         menubar = Menu(root)
 
         configmenu = Menu(menubar, tearoff=0)
-        configmenu.add_command(label="Configuration", command=configuration)
+        configmenu.add_command(label="Open file", command=openFile)
+        configmenu.add_command(label="Configuration", accelerator = "CTRL+X", command=configuration)
         configmenu.add_command(label="Time Presets", command=timePresets)
         menubar.add_cascade(label="File", menu=configmenu)
 
@@ -251,13 +278,15 @@ def menu(root):
         helpmenu.add_command(label="What's Pomodoro?", command=whatsPomodoro)
         helpmenu.add_command(label="About...", command=whatsPomodoro)
         menubar.add_cascade(label="Help", menu=helpmenu)
+
+        root.bind("<Control-KeyPress-x>", configuration)
+
         return menubar
 
 
 root = Tk()
 
 main_errors = Errors()
-
 try:
         from pomodoro import pomodoro #this import is right here to catch the possible exception.
 except ImportError:
@@ -274,7 +303,9 @@ app = App(root, pom)
 menubar = menu(root)
 
 
+
 root.protocol("WM_DELETE_WINDOW", callback)
 root.config(menu=menubar)
+root.geometry("500x500")
 
 root.mainloop()

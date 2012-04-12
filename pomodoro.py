@@ -4,7 +4,10 @@ from time import sleep
 import threading
 import play_sound
 from KThread import *
-import os, inspect, winsound, sys
+import os, inspect, sys
+
+if sys.platform[:3] == "win":
+	import winsound
 
 import pygame
 
