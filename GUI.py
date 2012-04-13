@@ -218,7 +218,7 @@ class Errors:
 
         def ImportError(self):
                 tkMessageBox.showerror("Error", "You must install the module pygame, check this link: http://www.pygame.org/download.shtml")
-                self.root.destroy()
+                root.destroy()
 
 
 
