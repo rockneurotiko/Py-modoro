@@ -2,18 +2,24 @@
 
 from time import sleep
 import threading
-import play_sound
-from KThread import *
-import os, inspect, sys
 
-if sys.platform[:3] == "win":
-	import winsound
+from libs.KThread import *
 
 import pygame
 
+"""This library I don't use, I use pygame.mixer.music, who let's set the volume"""
+#from libs.play_sound import *
+
+"""If you want to play the music with winsound, uncomment this imports and check play_sound() method"""
+#import sys #, osm inspect
+#if sys.platform[:3] == "win":
+#	import winsound
 
 
 
+
+
+"""Old class and method to make the thread"""
 #################################################
 #												#
 # class Temporizador(threading.Thread):			#
@@ -50,7 +56,7 @@ __author__ = "Rock Neurotiko"
 __copyright__= "Copyright 2012, Rock Neurotiko"
 __credits__ = ["Rock Neurotiko",]
 __license__ = "GNU/GPL v3"
-__version__ = "0.2"
+__version__ = "0.3"
 __maintainer__ = "Rock Neurotiko"
 __email__ = "miguelglafuente@gmail.com"
 
@@ -68,6 +74,7 @@ class pomodoro:
 		self.segundos_trans = 0
 
 		self.volume = 1.0
+		self.filemp3 = "alarma.mp3"
 
 
 	def crear_pom(self, time = 0):
@@ -184,7 +191,11 @@ class pomodoro:
 		#so_system = sys.platform
 
 		pygame.mixer.init()
-		pygame.mixer.music.load('alarma.mp3')
+		#pygame.mixer.music.load('alarma.mp3')
+		try:
+			pygame.mixer.music.load(self.filemp3)
+		except:
+			pygame.mixer.music.load("alarma.mp3")
 		pygame.mixer.music.set_volume(self.volume)
 		pygame.mixer.music.play()
 

@@ -1,10 +1,23 @@
 #!/usr/bin/python
 
+#GUI libraries
 from Tkinter import *
 import tkMessageBox, tkFileDialog
-from KThread import *
+
+#Library to manipulate config archives
+from ConfigParser import *
+
+#Thread lib, this one let kill the thread
+from libs.KThread import *
+
+#sleep method
 from time import sleep
-import os
+
+#Necesary to make the path identifications
+import os, inspect
+
+#Some apps and methods to the program
+from menuApps.InOut import *
 
 
 
@@ -12,7 +25,7 @@ __author__ = "Rock Neurotiko"
 __copyright__= "Copyright 2012, Rock Neurotiko"
 __credits__ = ["Rock Neurotiko", ]
 __license__ = "GNU/GPL v3"
-__version__ = "0.2"
+__version__ = "0.3"
 __maintainer__ = "Rock Neurotiko"
 __email__ = "miguelglafuente@gmail.com"
 
@@ -20,6 +33,8 @@ class App:
 
         def __init__(self, master, pom):
                 self.errors = Errors()
+
+                loadConfig(pom, APPPATH, CONFIG)
 
                 self.pom = pom
                 self.time_in_var = IntVar()
@@ -111,7 +126,7 @@ class Config:
 
                 #Volume Config
                 self.volume = DoubleVar()
-                self.volume.set(1.0)
+                self.volume.set(pom.volume)
 
                 volume_label = Label(master, text="Volume: ")
                 volume_label.grid(row=1, column=0)
@@ -129,6 +144,8 @@ class Config:
 
         def accept(self):
                 pom.volume = self.volume.get()
+                if(saveAreYouSure()):
+                        save(pom, APPPATH, CONFIG)
                 self.master.destroy()
 
         def cancel(self):
@@ -192,33 +209,6 @@ I'm gonna resume it, if you want a large explain search on the Internet"""
 
 
 
-
-class SearchFile:
-
-        def __init__(self):
-                
-
-                # define options for opening or saving a file
-                self.file_opt = options = {}
-                options['defaultextension'] = '' # couldn't figure out how this works
-                options['filetypes'] = [('Music mp3', '.mp3')] # ('all files', '.*'), 
-                options['initialdir'] = 'C:\\'
-                options['initialfile'] = 'myfile.txt'
-                options['parent'] = root
-                options['title'] = 'This is a title'
-
-
-                self.dir_opt = options = {}
-                options['initialdir'] = 'C:\\'
-                options['mustexist'] = False
-                options['parent'] = root
-                options['title'] = 'This is a title'
-
-        def askOpenFile(self):
-                return tkFileDialog.askopenfile(mode='r', **self.file_opt)
-
-
-
 class Errors:
         def __init__(self):
                 pass
@@ -228,18 +218,14 @@ class Errors:
 
         def ImportError(self):
                 tkMessageBox.showerror("Error", "You must install the module pygame, check this link: http://www.pygame.org/download.shtml")
-                root.destroy()
-
-
+                self.root.destroy()
 
 
 
 #Function to ask if you really wanna close.
-def callback():
+def callback(*evento):
         if tkMessageBox.askokcancel("Quit" + " " * 20 + "Py-Modoro", "Are you sure you wanna close Py-Modoro?"):
                 root.destroy()
-
-
 
 #This function creates the configuration window (File>Configuration)
 def configuration(*evento):
@@ -252,15 +238,18 @@ def timePresets():
         TimePresets(presetsWindow)
 
 
+
 #This function creates another window (Help>What's pomodoro?)
 def whatsPomodoro():
         helpwindow = Toplevel(root) #Define the new window
         Help(helpwindow) #Call to the class Help and pass the new window created.
 
+
 def openFile():
-        
-        searchClass = SearchFile()
-        filemp3 = searchClass.askOpenFile()
+        searchClass = SearchFile(root)
+        pom.filemp3 = searchClass.askOpenFile()
+
+        print pom.filemp3
 
 
 
@@ -272,6 +261,8 @@ def menu(root):
         configmenu.add_command(label="Open file", command=openFile)
         configmenu.add_command(label="Configuration", accelerator = "CTRL+X", command=configuration)
         configmenu.add_command(label="Time Presets", command=timePresets)
+        configmenu.add_separator
+        configmenu.add_command(label="Quit", accelerator = "CTRL+Q", command=callback)
         menubar.add_cascade(label="File", menu=configmenu)
 
         helpmenu = Menu(menubar, tearoff=0)
@@ -280,9 +271,15 @@ def menu(root):
         menubar.add_cascade(label="Help", menu=helpmenu)
 
         root.bind("<Control-KeyPress-x>", configuration)
+        root.bind("<Control-KeyPress-q>", callback)
 
         return menubar
 
+
+
+#GLOBAL VARIABLES
+CONFIG = "pomfig.cfg" #Configuration name archive
+APPPATH = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe()))) #Path of the main app
 
 root = Tk()
 
@@ -295,7 +292,7 @@ except ImportError:
 
 pom = pomodoro()
 
-root.title("Py-Modoro v.0.2  - By Rock Neurotiko")
+root.title("Py-Modoro v."+ __version__ + "  - By Rock Neurotiko")
 
 
 app = App(root, pom)
