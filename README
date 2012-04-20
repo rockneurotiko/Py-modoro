@@ -18,6 +18,10 @@ Put every archives in ~/pomodoro/ or anywhere you want.
 -----------------
 EXECUTION
 ----------------
+
+#######
+ON LINUX:
+
 Open a terminal, and then:
 
 $ cd pomodoro  #(Or the path you puted the file)
@@ -28,11 +32,12 @@ $ ./GUI.py
 
 You can make a "shortcut" openning a terminal, and writting:
 
-alias pomodoro = "python ~/pomodoro/pomodoro.py"
+alias pomodoro = "python ~/pomodoro/GUI.py"
 
 When you write pomodoro in a terminal, it will execute the program.
 
 Check out that this is temporal, if you want to have it for ever, google it!
+########
 
 --------- 
 
