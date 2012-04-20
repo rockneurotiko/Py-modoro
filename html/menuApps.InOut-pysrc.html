@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>menuApps.InOut</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://www.github.com/rockneurotiko/Py-modoro">Py-Modoro</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;menuApps ::
+        Module&nbsp;InOut
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="menuApps.InOut-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="menuApps.InOut-module.html">Module menuApps.InOut</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">tkMessageBox</tt><tt class="py-op">,</tt> <tt class="py-name">tkFileDialog</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">ConfigParser</tt> <tt class="py-keyword">import</tt> <tt class="py-op">*</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"> </tt>
+<a name="SearchFile"></a><div id="SearchFile-def"><a name="L4"></a><tt class="py-lineno"> 4</tt> <a class="py-toggle" href="#" id="SearchFile-toggle" onclick="return toggle('SearchFile');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="menuApps.InOut.SearchFile-class.html">SearchFile</a><tt class="py-op">:</tt> </tt>
+</div><div id="SearchFile-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="SearchFile-expanded"><a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-docstring">        Class to manage the File Search</tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-docstring">        Uses tkFileDialog</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"> </tt>
+<a name="SearchFile.__init__"></a><div id="SearchFile.__init__-def"><a name="L10"></a><tt class="py-lineno">10</tt> <a class="py-toggle" href="#" id="SearchFile.__init__-toggle" onclick="return toggle('SearchFile.__init__');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="menuApps.InOut.SearchFile-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">root</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SearchFile.__init__-collapsed" style="display:none;" pad="++" indent="++++++++++++"></div><div id="SearchFile.__init__-expanded"><a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line">                <tt class="py-docstring">"""</tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"><tt class="py-docstring">                Constructor.</tt> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"><tt class="py-docstring">                @param root The master window.</tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt class="py-docstring">                @type root Tk() or Toplevel</tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"><tt class="py-docstring">                """</tt> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line">                 </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line">                <tt class="py-comment"># define options for opening or saving a file</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">file_opt</tt> <tt class="py-op">=</tt> <tt class="py-name">options</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line">                <tt class="py-name">options</tt><tt class="py-op">[</tt><tt class="py-string">'defaultextension'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-string">''</tt> <tt class="py-comment"># couldn't figure out how this works</tt> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line">                <tt class="py-name">options</tt><tt class="py-op">[</tt><tt class="py-string">'filetypes'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">(</tt><tt class="py-string">'Music mp3'</tt><tt class="py-op">,</tt> <tt class="py-string">'.mp3'</tt><tt class="py-op">)</tt><tt class="py-op">]</tt> <tt class="py-comment"># ('all files', '.*'), </tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line">                <tt class="py-name">options</tt><tt class="py-op">[</tt><tt class="py-string">'initialdir'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-string">'C:\\'</tt> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line">                <tt class="py-name">options</tt><tt class="py-op">[</tt><tt class="py-string">'initialfile'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-string">'alarma.mp3'</tt> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line">                <tt class="py-name">options</tt><tt class="py-op">[</tt><tt class="py-string">'parent'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">root</tt> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line">                <tt class="py-name">options</tt><tt class="py-op">[</tt><tt class="py-string">'title'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-string">'This is a title'</tt> </tt>
+</div><a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line"> </tt>
+<a name="SearchFile.askOpenFile"></a><div id="SearchFile.askOpenFile-def"><a name="L28"></a><tt class="py-lineno">28</tt> <a class="py-toggle" href="#" id="SearchFile.askOpenFile-toggle" onclick="return toggle('SearchFile.askOpenFile');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="menuApps.InOut.SearchFile-class.html#askOpenFile">askOpenFile</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SearchFile.askOpenFile-collapsed" style="display:none;" pad="++" indent="++++++++++++"></div><div id="SearchFile.askOpenFile-expanded"><a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line">                <tt class="py-docstring">"""</tt> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line"><tt class="py-docstring">                Open a File Dialog to select the music.</tt> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line"><tt class="py-docstring">                @return A String with the file path.</tt> </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line"><tt class="py-docstring">                """</tt> </tt>
+<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line">                </tt>
+<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> <tt class="py-name">tkFileDialog</tt><tt class="py-op">.</tt><tt class="py-name">askopenfilename</tt><tt class="py-op">(</tt><tt class="py-op">**</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">file_opt</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line"> </tt>
+<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line"> </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line"> </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line"> </tt>
+<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line"> </tt>
+<a name="loadConfig"></a><div id="loadConfig-def"><a name="L40"></a><tt class="py-lineno">40</tt> <a class="py-toggle" href="#" id="loadConfig-toggle" onclick="return toggle('loadConfig');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="menuApps.InOut-module.html#loadConfig">loadConfig</a><tt class="py-op">(</tt><tt class="py-param">pom</tt><tt class="py-op">,</tt> <tt class="py-param">APPPATH</tt><tt class="py-op">,</tt> <tt class="py-param">CONFIG</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="loadConfig-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="loadConfig-expanded"><a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line"><tt class="py-docstring">        Method to load the configuration.</tt> </tt>
+<a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line"><tt class="py-docstring">        @param pom The Pomodoro to set the options</tt> </tt>
+<a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line"><tt class="py-docstring">        @type pom Pomodoro</tt> </tt>
+<a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line"><tt class="py-docstring">        @param APPPATH The path to the apply</tt> </tt>
+<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line"><tt class="py-docstring">        @type APPPATH String</tt> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line"><tt class="py-docstring">        @param CONFIG The name of the config archive (*.cfg)</tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line"><tt class="py-docstring">        @type CONFIG String</tt> </tt>
+<a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line">        <tt class="py-name">cfg</tt> <tt class="py-op">=</tt> <tt class="py-name">ConfigParser</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line">         </tt>
+<a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line">        <tt class="py-name">cfg</tt><tt class="py-op">.</tt><tt class="py-name">read</tt><tt class="py-op">(</tt><tt id="link-0" class="py-name" targets="Variable GUI.APPPATH=GUI-module.html#APPPATH"><a title="GUI.APPPATH" class="py-name" href="#" onclick="return doclink('link-0', 'APPPATH', 'link-0');">APPPATH</a></tt> <tt class="py-op">+</tt> <tt class="py-string">'/'</tt> <tt class="py-op">+</tt> <tt id="link-1" class="py-name" targets="Variable GUI.CONFIG=GUI-module.html#CONFIG"><a title="GUI.CONFIG" class="py-name" href="#" onclick="return doclink('link-1', 'CONFIG', 'link-1');">CONFIG</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line">        <tt id="link-2" class="py-name" targets="Variable GUI.pom=GUI-module.html#pom"><a title="GUI.pom" class="py-name" href="#" onclick="return doclink('link-2', 'pom', 'link-2');">pom</a></tt><tt class="py-op">.</tt><tt class="py-name">volume</tt> <tt class="py-op">=</tt> <tt class="py-name">cfg</tt><tt class="py-op">.</tt><tt class="py-name">getfloat</tt><tt class="py-op">(</tt><tt class="py-string">"configuration"</tt><tt class="py-op">,</tt> <tt class="py-string">"volume"</tt><tt class="py-op">)</tt> </tt>
+<a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line">        <tt id="link-3" class="py-name"><a title="GUI.pom" class="py-name" href="#" onclick="return doclink('link-3', 'pom', 'link-2');">pom</a></tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Method pomodoro.Pomodoro.set_Filemp3()=pomodoro.Pomodoro-class.html#set_Filemp3"><a title="pomodoro.Pomodoro.set_Filemp3" class="py-name" href="#" onclick="return doclink('link-4', 'set_Filemp3', 'link-4');">set_Filemp3</a></tt><tt class="py-op">(</tt><tt class="py-name">cfg</tt><tt class="py-op">.</tt><tt class="py-name">get</tt><tt class="py-op">(</tt><tt class="py-string">"configuration"</tt><tt class="py-op">,</tt> <tt class="py-string">"song"</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L57"></a><tt class="py-lineno">57</tt>  <tt class="py-line"> </tt>
+<a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line"> </tt>
+<a name="save"></a><div id="save-def"><a name="L59"></a><tt class="py-lineno">59</tt> <a class="py-toggle" href="#" id="save-toggle" onclick="return toggle('save');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="menuApps.InOut-module.html#save">save</a><tt class="py-op">(</tt><tt class="py-param">pom</tt><tt class="py-op">,</tt> <tt class="py-param">APPPATH</tt><tt class="py-op">,</tt> <tt class="py-param">CONFIG</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="save-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="save-expanded"><a name="L60"></a><tt class="py-lineno">60</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L61"></a><tt class="py-lineno">61</tt>  <tt class="py-line"><tt class="py-docstring">        Method to save the changes (volume, song,...) in the configuration file</tt> </tt>
+<a name="L62"></a><tt class="py-lineno">62</tt>  <tt class="py-line"><tt class="py-docstring">        (By default pomfig.cfg)</tt> </tt>
+<a name="L63"></a><tt class="py-lineno">63</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L64"></a><tt class="py-lineno">64</tt>  <tt class="py-line"><tt class="py-docstring">        @param pom The Pomodoro to set the options</tt> </tt>
+<a name="L65"></a><tt class="py-lineno">65</tt>  <tt class="py-line"><tt class="py-docstring">        @type pom Pomodoro</tt> </tt>
+<a name="L66"></a><tt class="py-lineno">66</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L67"></a><tt class="py-lineno">67</tt>  <tt class="py-line"><tt class="py-docstring">        @param APPPATH The path to the apply</tt> </tt>
+<a name="L68"></a><tt class="py-lineno">68</tt>  <tt class="py-line"><tt class="py-docstring">        @type APPPATH String</tt> </tt>
+<a name="L69"></a><tt class="py-lineno">69</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L70"></a><tt class="py-lineno">70</tt>  <tt class="py-line"><tt class="py-docstring">        @param CONFIG The name of the config archive (*.cfg)</tt> </tt>
+<a name="L71"></a><tt class="py-lineno">71</tt>  <tt class="py-line"><tt class="py-docstring">        @type CONFIG String</tt> </tt>
+<a name="L72"></a><tt class="py-lineno">72</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L73"></a><tt class="py-lineno">73</tt>  <tt class="py-line">        <tt class="py-name">cfg</tt> <tt class="py-op">=</tt> <tt class="py-name">ConfigParser</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L74"></a><tt class="py-lineno">74</tt>  <tt class="py-line"> </tt>
+<a name="L75"></a><tt class="py-lineno">75</tt>  <tt class="py-line">        <tt class="py-name">cfg</tt><tt class="py-op">.</tt><tt class="py-name">read</tt><tt class="py-op">(</tt><tt id="link-5" class="py-name"><a title="GUI.APPPATH" class="py-name" href="#" onclick="return doclink('link-5', 'APPPATH', 'link-0');">APPPATH</a></tt> <tt class="py-op">+</tt> <tt class="py-string">'/'</tt> <tt class="py-op">+</tt> <tt id="link-6" class="py-name"><a title="GUI.CONFIG" class="py-name" href="#" onclick="return doclink('link-6', 'CONFIG', 'link-1');">CONFIG</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L76"></a><tt class="py-lineno">76</tt>  <tt class="py-line"> </tt>
+<a name="L77"></a><tt class="py-lineno">77</tt>  <tt class="py-line">        <tt class="py-name">cfg</tt><tt class="py-op">.</tt><tt class="py-name">set</tt><tt class="py-op">(</tt><tt class="py-string">"configuration"</tt><tt class="py-op">,</tt> <tt class="py-string">"volume"</tt><tt class="py-op">,</tt> <tt id="link-7" class="py-name"><a title="GUI.pom" class="py-name" href="#" onclick="return doclink('link-7', 'pom', 'link-2');">pom</a></tt><tt class="py-op">.</tt><tt class="py-name">volume</tt><tt class="py-op">)</tt> </tt>
+<a name="L78"></a><tt class="py-lineno">78</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt><tt class="py-op">(</tt><tt id="link-8" class="py-name"><a title="GUI.pom" class="py-name" href="#" onclick="return doclink('link-8', 'pom', 'link-2');">pom</a></tt><tt class="py-op">.</tt><tt class="py-name">filemp3</tt> <tt class="py-op">!=</tt> <tt class="py-string">""</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L79"></a><tt class="py-lineno">79</tt>  <tt class="py-line">                <tt class="py-name">cfg</tt><tt class="py-op">.</tt><tt class="py-name">set</tt><tt class="py-op">(</tt><tt class="py-string">"configuration"</tt><tt class="py-op">,</tt> <tt class="py-string">"song"</tt><tt class="py-op">,</tt> <tt id="link-9" class="py-name"><a title="GUI.pom" class="py-name" href="#" onclick="return doclink('link-9', 'pom', 'link-2');">pom</a></tt><tt class="py-op">.</tt><tt class="py-name">filemp3</tt><tt class="py-op">)</tt> </tt>
+<a name="L80"></a><tt class="py-lineno">80</tt>  <tt class="py-line"> </tt>
+<a name="L81"></a><tt class="py-lineno">81</tt>  <tt class="py-line">        <tt class="py-name">f</tt> <tt class="py-op">=</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt id="link-10" class="py-name"><a title="GUI.APPPATH" class="py-name" href="#" onclick="return doclink('link-10', 'APPPATH', 'link-0');">APPPATH</a></tt> <tt class="py-op">+</tt> <tt class="py-string">'/'</tt> <tt class="py-op">+</tt> <tt id="link-11" class="py-name"><a title="GUI.CONFIG" class="py-name" href="#" onclick="return doclink('link-11', 'CONFIG', 'link-1');">CONFIG</a></tt><tt class="py-op">,</tt> <tt class="py-string">"w"</tt><tt class="py-op">)</tt> </tt>
+<a name="L82"></a><tt class="py-lineno">82</tt>  <tt class="py-line">        <tt class="py-name">cfg</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-name">f</tt><tt class="py-op">)</tt> </tt>
+<a name="L83"></a><tt class="py-lineno">83</tt>  <tt class="py-line">        <tt class="py-name">f</tt><tt class="py-op">.</tt><tt class="py-name">close</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L84"></a><tt class="py-lineno">84</tt>  <tt class="py-line"> </tt>
+<a name="L85"></a><tt class="py-lineno">85</tt>  <tt class="py-line"> </tt>
+<a name="L86"></a><tt class="py-lineno">86</tt>  <tt class="py-line"> </tt>
+<a name="L87"></a><tt class="py-lineno">87</tt>  <tt class="py-line"> </tt>
+<a name="saveAreYouSure"></a><div id="saveAreYouSure-def"><a name="L88"></a><tt class="py-lineno">88</tt> <a class="py-toggle" href="#" id="saveAreYouSure-toggle" onclick="return toggle('saveAreYouSure');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="menuApps.InOut-module.html#saveAreYouSure">saveAreYouSure</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="saveAreYouSure-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="saveAreYouSure-expanded"><a name="L89"></a><tt class="py-lineno">89</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L90"></a><tt class="py-lineno">90</tt>  <tt class="py-line"><tt class="py-docstring">        Method to open a window to ask if it would save.\n</tt> </tt>
+<a name="L91"></a><tt class="py-lineno">91</tt>  <tt class="py-line"><tt class="py-docstring">        Two options, Accept, Cancel.</tt> </tt>
+<a name="L92"></a><tt class="py-lineno">92</tt>  <tt class="py-line"><tt class="py-docstring">        @return The value of True (accept) of False (cancel).</tt> </tt>
+<a name="L93"></a><tt class="py-lineno">93</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L94"></a><tt class="py-lineno">94</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">tkMessageBox</tt><tt class="py-op">.</tt><tt class="py-name">askokcancel</tt><tt class="py-op">(</tt><tt class="py-string">"Save"</tt><tt class="py-op">,</tt> <tt class="py-string">"Do you wanna save the changes?"</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L95"></a><tt class="py-lineno">95</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://www.github.com/rockneurotiko/Py-modoro">Py-Modoro</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Apr 20 14:22:58 2012
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

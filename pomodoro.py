@@ -7,7 +7,7 @@ from libs.KThread import *
 
 import pygame
 
-"""This library I don't use, I use pygame.mixer.music, who let's set the volume"""
+"""I don't use this library any more, I use pygame.mixer.music, who let's set the volume"""
 #from libs.play_sound import *
 
 """If you want to play the music with winsound, uncomment this imports and check play_sound() method"""
@@ -60,9 +60,16 @@ __version__ = "0.3"
 __maintainer__ = "Rock Neurotiko"
 __email__ = "miguelglafuente@gmail.com"
 
-class pomodoro:
+class Pomodoro(object):
+	"""
+	Main backend class. Contains all the back end methods to runs.
+	"""
 
 	def __init__(self):
+		"""
+		Constructor.
+		Initialize control variables.
+		"""
 
 		self.ESTADO = "STOP" #STATES: STOP, START, PAUSE, END
 		self.TIEMPO = 25*60
@@ -78,6 +85,14 @@ class pomodoro:
 
 
 	def crear_pom(self, time = 0):
+		"""
+		Method to create a pomodoro.
+		If it's already started or paused, it will be interrupted and started again.
+		Just makes the adjust to run, but the pomodoro doesn't start
+
+		@param time The time selected to creates the pomodoro.
+		@type time Integer
+		"""
 
 		if (self.estado=="START" or self.estado=="PAUSE"):
 			self.interrupt_pom()
@@ -90,6 +105,10 @@ class pomodoro:
 
 
 	def iniciar_pom(self):
+		"""
+		Method to start a pomodoro.
+		If it's already started it will be interrupted and started again.
+		"""
 		#print("llama a iniciar")  #debug control
 
 		if(self.estado =="START"):
@@ -107,6 +126,9 @@ class pomodoro:
 		self.interr = 0
 
 	def resume_pom(self):
+		"""
+		Method to resume a pomodoro.
+		"""
 		#print("llama a resumir") #debug control
 
 		self.estado = "START"
@@ -120,6 +142,10 @@ class pomodoro:
 		self.interr = 0
 
 	def interrupt_pom(self):
+		"""
+		Method to STOP and pomodoro.
+		Just works if it's already started.
+		"""
 		#print "Llama a parar"  #debug control
 
 		if (self.estado=="STOP" or self.estado=="PAUSE"):
@@ -133,6 +159,13 @@ class pomodoro:
 			self.estado = "PAUSE" #put the state into PAUSE
 
 	def arrancar(self, time):
+		"""
+		Method to control the finish of the pomodoro.
+		Creates a timer threading.
+
+		@param time The time selected of the pomodoro.
+		@type time Integer
+		"""
 		global t
 		if self.on == True:
 			t.cancel()
@@ -142,6 +175,10 @@ class pomodoro:
 		self.on = True
 
 	def terminar(self):
+		"""
+		Method who is executed when the pomodoro is finished.
+		This method is called from the Timer threading of arrancar method
+		"""
 		self.estado = "END"
 		e.kill()
 		self.on = False
@@ -153,6 +190,10 @@ class pomodoro:
 
 
 	def contador(self):
+		"""
+		Method who controls the time.
+		This method is called from the KThread instance.
+		"""
 		sleep(1)
 		while (self.segundos_trans < self.tiempo and self.estado == "START"):
 			self.segundos_trans += 1
@@ -161,9 +202,12 @@ class pomodoro:
 	def get_interruptions(self):
 		return self.interr
 
-	
 
 	def get_tiempo(self):
+		"""
+		Getter.
+		@return The time parsed in a String.
+		"""
 		tiempo_local = self.seconds()
 
 		if tiempo_local <= 60:
@@ -184,9 +228,16 @@ class pomodoro:
 
 
 	def seconds(self):
+		"""
+		Turns the time into seconds
+		"""
 		return self.tiempo - self.segundos_trans
 
 	def play_sound(self):
+		"""
+		Play a song.
+		Method called at the end of the pomodoro.
+		"""
 
 		#so_system = sys.platform
 
@@ -206,3 +257,19 @@ class pomodoro:
 
 		# elif(so_system[:3] == "lin"):
 		# 	play_sound.play(os.path.dirname(inspect.getfile(inspect.currentframe())) + "/alarma.wav")
+
+
+
+	"""
+	Getters and setters.
+	"""
+
+	def set_Filemp3(self, path):
+		"""
+		Set the filemp3 control variable of the Pomodoro instance.
+
+		@param path The path of the song. (Not empty)
+		@type path String
+		"""
+		if path!="":
+			self.filemp3 = path
