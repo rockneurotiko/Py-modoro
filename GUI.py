@@ -291,7 +291,7 @@ class Help(object):
 
                 whats_text.insert(INSERT, var)
                 whats_text.config(state=DISABLED)
-                self.master.geometry("600x600")
+                self.master.geometry("600x300")
 
                 whats_text.pack()
 
@@ -309,8 +309,7 @@ class Help(object):
 
         Author: """ + __author__ + """.
         Contact: """ + __email__ + """
-        License: """ + __license__ + """.
-        Maintainer(s): """ + __maintainer__ + """. 
+        License: """ + __license__ + """. 
 
         """ + __copyright__ + """
 
@@ -441,21 +440,32 @@ def callback(*evento):
 
 
 
-#GLOBAL VARIABLES
-CONFIG = "pomfig.cfg" #: Configuration name archive
-APPPATH = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe()))) #: Path of the main app
 
-main_errors = Errors() #: main variable to call errors
+def start():
+        #GLOBAL VARIABLES
+        global CONFIG
+        global APPPATH
+        global main_errors
+        global pom
+        global root
+        global app
 
-try: #Try to check if the import can be onde
-        from pomodoro import Pomodoro #this import is right here to catch the possible exception.
-except ImportError: #If the pygame is not installed makes the next block
-        main_errors.ImportError() #Call to the ImportError method of the Error class
-        os._exit(0) #Close the program
 
-pom = Pomodoro() #: Creates the pomodoro class instance, this will have all the configurations and runs all the procedores
 
-if __name__ == "__main__":
+        CONFIG = "pomfig.cfg" #: Configuration name archive
+        APPPATH = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe()))) #: Path of the main app
+
+        main_errors = Errors() #: main variable to call errors
+
+        try: #Try to check if the import can be onde
+                from pomodoro import Pomodoro #this import is right here to catch the possible exception.
+        except ImportError: #If the pygame is not installed makes the next block
+                main_errors.ImportError() #Call to the ImportError method of the Error class
+                os._exit(0) #Close the program
+
+        pom = Pomodoro() #: Creates the pomodoro class instance, this will have all the configurations and runs all the procedores
+
+        #if __name__ == "__main__":
         
         root = Tk() #: initialize the Tk
 
