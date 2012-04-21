@@ -3,7 +3,7 @@ LICENSE:
 GNU GPL V3.
 
 __author__: Rock Neurotiko
-__version__: 0.1 Beta
+__version__: 0.3 Beta
 
 
 -----------------
@@ -13,7 +13,7 @@ INSTALATION
 
 Put every archives in ~/pomodoro/ or anywhere you want.
 
-
+setup.py isn't usefull right now.
 
 -----------------
 EXECUTION
