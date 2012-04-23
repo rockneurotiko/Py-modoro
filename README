@@ -13,8 +13,6 @@ INSTALATION
 
 Put every archives in ~/pomodoro/ or anywhere you want.
 
-setup.py isn't usefull right now.
-
 -----------------
 EXECUTION
 ----------------
@@ -25,16 +23,16 @@ ON LINUX:
 Open a terminal, and then:
 
 $ cd pomodoro  #(Or the path you puted the file)
-$ sudo chmod +x GUI.py  #Gives execution permiss
-$ ./GUI.py
+$ sudo chmod +x Py-modoro.py  #Gives execution permiss
+$ ./Py-modoro.py
 
 
 
 You can make a "shortcut" openning a terminal, and writting:
 
-alias pomodoro = "python ~/pomodoro/GUI.py"
+alias pymodoro = "python ~/pomodoro/Py-modoro.py"
 
-When you write pomodoro in a terminal, it will execute the program.
+When you write pymodoro in a terminal, it will execute the program.
 
 Check out that this is temporal, if you want to have it for ever, google it!
 ########
